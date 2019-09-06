@@ -6,6 +6,7 @@ body {
 
 #top-bar {
   margin-top: 28px;
+  text-align: center;
 }
 
 .spacing-reset {
@@ -64,5 +65,10 @@ body {
 }
 
 h1 {
+  color: #f30;
+}
+
+.myHeader {
+  width: 100%;
   color: #f30;
 }
