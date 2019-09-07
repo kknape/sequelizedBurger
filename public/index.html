@@ -10,7 +10,7 @@
     />
     <link
       rel="stylesheet"
-      href="css/styles.css"
+      href="assets/css/style.css"
       media="screen"
       title="no title"
     />
@@ -21,36 +21,39 @@
   <body>
     <div class="container">
       <!--header/title row-->
-      <div class="row align-items-center">
+      <div class="row myHeader">
         <div class="col-md col-sm">
           <img src="assets/images/burger.png" />
-          <div class="myHeader">Eat-Da-Burger!</div>
+          <div>Eat-Da-Burger!</div>
         </div>
       </div>
       <!--Burgers added and to be eaten-->
       <div class="row">
-        <div class="col-md-5 col-sm-5"></div>
+        <div class="col-md-5 col-sm-5 newB"></div>
 
         <!--Devour it button-->
 
         <div class="col-md-2 col-sm-2">
-          <a class="btn btn-light">Devour It!</a>
+          <a class="btn btn-light myButton">Devour It!</a>
         </div>
 
         <!--burgers that have been eaten-->
 
-        <div class="col-md-5 col-sm-5"></div>
+        <div class="col-md-5 col-sm-5 eatenB"></div>
       </div>
       <!--add a new burger-->
-      <div class="row align-items-center">
+      <!--text entry field -->
+      <div class="row">
         <div class="col-md-12"></div>
       </div>
-      <div class="row align-items-center">
-        <div class="col-md-12"><a class="btn btn-light">Submit</a></div>
-      </div>
-      <div class="row align-items-center">
-        <div class="col-md-12">
-          Enter a burger you want to eat. Click the "Submit" button.
+      <div class="row addB">
+        <div class="col-md-12 form-group">
+          <label for="addBurger"
+            >Enter a burger you want to eat. Click the "Submit" button.</label
+          >
+          <textarea class="form-control" id="addBurger" rows="3"></textarea>
+
+          <a class="btn btn-light myButton">Submit</a>
         </div>
       </div>
       <!-- End Container -->

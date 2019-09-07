@@ -71,4 +71,36 @@ h1 {
 .myHeader {
   width: 100%;
   color: #f30;
+  margin: auto;
+  text-align: center;
+  font-size: 32px;
+  padding-bottom: 10px;
+}
+
+.addB {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  padding-top: 40px;
+  font-weight: bold;
+}
+
+.myButton {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  background-color: #fc6;
+  border: 1pt black solid;
+  width: 120px;
+  font-weight: bold;
+}
+
+.newB {
+  width: 100%;
+  background-color: whitesmoke;
+}
+
+.eatenB {
+  background-color: whitesmoke;
 }
