@@ -3,23 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <title>Burger 2 - The Seqeul</title>
-    <!-- Latest compiled and minified CSS & JS -->
+    <!-- Latest compiled and minified CSS -->
     <link
       href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="assets/css/style.css"
-      media="screen"
-      title="no title"
-    />
+    <!--Jquery and bootstrap frameworks-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!--My style sheet-->
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    <!--Application 
+    <script type="text/javascript" src="/assets/js/burger.js"></script>-->
   </head>
 
   <body>
-    <div class="container">
+    <div class="container hidden">
       <!--header/title row-->
       <div class="row myHeader">
         <div class="col-md col-sm">
@@ -29,7 +29,7 @@
       </div>
       <!--Burgers added and to be eaten-->
       <div class="row">
-        <div class="col-md-5 col-sm-5 newB"></div>
+        <div class="col-md-5 col-sm-5 newB" id="eatMe"></div>
 
         <!--Devour it button-->
 
@@ -39,7 +39,7 @@
 
         <!--burgers that have been eaten-->
 
-        <div class="col-md-5 col-sm-5 eatenB"></div>
+        <div class="col-md-5 col-sm-5 eatenB" id="eatenBurger"></div>
       </div>
       <!--add a new burger-->
       <!--text entry field -->
@@ -48,19 +48,22 @@
       </div>
       <div class="row addB">
         <div class="col-md-12 form-group">
-          <label for="addBurger"
-            >Enter a burger you want to eat. Click the "Submit" button.</label
-          >
-          <textarea class="form-control" id="addBurger" rows="3"></textarea>
-
-          <a class="btn btn-light myButton">Submit</a>
+          <form id="newBurger">
+            <label for="addBurger"
+              >Enter a burger you want to eat. Click the "Submit" button.</label
+            >
+            <textarea class="form-control" id="addBurger" rows="3"></textarea>
+            <button type="submit" class="btn btn-light myButton">Submit</button>
+          </form>
         </div>
       </div>
       <!-- End Container -->
     </div>
     <!-- Custom Script -->
-    <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
-  <script src="js/blog.js" type="text/javascript"></script>
- -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js"
+      type="text/javascript"
+    ></script>
+    <!-- <script src="js/script.js" type="text/javascript"></script>-->
   </body>
 </html>

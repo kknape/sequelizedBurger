@@ -1,0 +1,12 @@
+Psuedo-Code
+create database in mySql
+    create database
+    use sequelize to create table
+create html page
+    image
+    title
+    area for new burgers
+    area for eaten burgers
+    button triggers move of burger from new to eaten - "Devour It"
+    text entry and submit button to add a new burger - "Submit"
+change sql commands to mySql
