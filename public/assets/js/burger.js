@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  // Getting jQuery references to the burger name,
+  // // Getting a reference to the input field where user adds a new burger
   var burgerName = $("#addBurger");
   var burgerForm = $("#newBurger");
 
@@ -7,56 +7,62 @@ $(document).ready(function() {
   var burgerContainer = $("#eatMe");
 
   // Adding an event listener for when the form is submitted to add a new burger;
-  $(burgerForm).on("submit", handleFormSubmit);
-  console.log("newBurger");
-  // Gets the part of the url that comes after the "?" (which we have if we're updating)
-  var url = window.location.search;
-  var burgerId;
+  $(document).on("submit", "#burgerForm", insertBurger);
 
-  // A function for handling what happens when the form to create a new burger is submitted
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    // Wont submit the burger if it's missing the name
-    if (!burgerName.val().trim()) {
-      return;
-    }
-  }
+  // Our initial burgers array
+  var burgers = [];
+
   // Getting the Burgers list
   getBurgers();
 
-  // Constructing a newBurger object to hand to the database
-  var newBurger = {
-    burger_name: burgerName.val().trim(),
-    devoured: false
-  };
+  // This function resets the burgers displayed with new todos from the database
+  function initializeRows() {
+    burgerContainer.empty();
+    var rowsToAdd = [];
+    for (var i = 0; i < burgers.length; i++) {
+      rowsToAdd.push(createNewRow(todos[i]));
+    }
+    burgerContainer.prepend(rowsToAdd);
+  }
 
-  submitBurger(newBurger);
-
-  // Submits a new burger
-  function submitBurger(burger) {
-    $.post("/api/burgers", burger, function() {
-      window.location.href = "*";
+  // This function grabs Burgers from the database and updates the view
+  function getBurgers() {
+    $.get("/api/burgers", function(data) {
+      burgers = data;
+      initializeRows();
     });
   }
 
-  // A function to get the Burgers, then renders the list of Burgers
-  function getBurgers() {
-    $.get("/api/burgers", renderBurgerList);
-  }
+ // This function constructs a todo-item row
+ function createNewRow(burger) {
+  var $newInputRow = $(
+    [
+      "<li class='list-group-item burger-item'>",
+      "<span>",
+      burger.text,
+      "</span>",
+      "<input type='text' class='edit' style='display: none;'>",
+      "<button class='delete btn btn-danger'>x</button>",
+      "<button class='complete btn btn-primary'>✓</button>",
+      "</li>"
+    ].join("")
+  );
 
-  // Function to render a list of burgers
-  function renderBurgerList(data) {
-    if (!data.length) {
-      window.location.href = "*";
-    }
-    $(".hidden").removeClass("hidden");
-    var rowsToAdd = [];
-    for (var i = 0; i < data.length; i++) {
-      rowsToAdd.push(data[i]);
-    }
-    burgerName.empty();
-    console.log(rowsToAdd);
-    console.log(burgerName);
-    burgerName.append(rowsToAdd);
+
+  // A function for handling what happens when the form to create a new burger is submitted
+  function insertBurger(event) {
+    event.preventDefault();
+    // Constructing a newBurger object to hand to the database
+    var newBurger = {
+      burger_name: burgerName.val().trim(),
+      devoured: false
+    };
+
+    // Submits a new burger to the db
+    $.post("/api/burgers", burger, getBurgers);
+    burgerName.val("");
   }
 });
+
+//submitting new burger
+submitBurger(newBurger);
