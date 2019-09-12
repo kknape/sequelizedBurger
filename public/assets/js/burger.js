@@ -1,10 +1,9 @@
 $(document).ready(function() {
   // // Getting a reference to the input field where user adds a new burger
-  var burgerName = $("#addBurger");
-  var burgerForm = $("#newBurger");
+  var $burgerName = $("#addBurger");
 
   // burgerContainer holds all of our burgers
-  var burgerContainer = $("#eatMe");
+  var $burgerContainer = $("#eatMe");
 
   // Adding an event listener for when the form is submitted to add a new burger;
   $(document).on("submit", "#burgerForm", insertBurger);
@@ -17,12 +16,12 @@ $(document).ready(function() {
 
   // This function resets the burgers displayed with new todos from the database
   function initializeRows() {
-    burgerContainer.empty();
+    $burgerContainer.empty();
     var rowsToAdd = [];
     for (var i = 0; i < burgers.length; i++) {
       rowsToAdd.push(createNewRow(todos[i]));
     }
-    burgerContainer.prepend(rowsToAdd);
+    $burgerContainer.prepend(rowsToAdd);
   }
 
   // This function grabs Burgers from the database and updates the view
@@ -33,21 +32,22 @@ $(document).ready(function() {
     });
   }
 
- // This function constructs a todo-item row
- function createNewRow(burger) {
-  var $newInputRow = $(
-    [
-      "<li class='list-group-item burger-item'>",
-      "<span>",
-      burger.text,
-      "</span>",
-      "<input type='text' class='edit' style='display: none;'>",
-      "<button class='delete btn btn-danger'>x</button>",
-      "<button class='complete btn btn-primary'>✓</button>",
-      "</li>"
-    ].join("")
-  );
+  // This function constructs a todo-item row
+  function createNewRow(burger) {
+    var $newInputRow = $(
+      [
+        "<li class='list-group-item' index='addBurger'>",
+        "<span>",
+        burger.burgerName,
+        "</span>",
+        "</li>"
+      ].join("")
+    );
 
+    $newInputRow.data("burger", burger);
+
+    return $newInputRow;
+  }
 
   // A function for handling what happens when the form to create a new burger is submitted
   function insertBurger(event) {
@@ -60,9 +60,6 @@ $(document).ready(function() {
 
     // Submits a new burger to the db
     $.post("/api/burgers", burger, getBurgers);
-    burgerName.val("");
+    $burgerName.val("");
   }
 });
-
-//submitting new burger
-submitBurger(newBurger);
