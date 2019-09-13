@@ -1,6 +1,6 @@
 $(document).ready(function() {
   // // Getting a reference to the input field where user adds a new burger
-  var $burgerName = $("#addBurger");
+  var $burgerName = $("input.addBurger");
 
   // burgerContainer holds all of our burgers
   var $burgerContainer = $("#eatMe");
@@ -19,7 +19,7 @@ $(document).ready(function() {
     $burgerContainer.empty();
     var rowsToAdd = [];
     for (var i = 0; i < burgers.length; i++) {
-      rowsToAdd.push(createNewRow(todos[i]));
+      rowsToAdd.push(createNewRow(burgers[i]));
     }
     $burgerContainer.prepend(rowsToAdd);
   }
@@ -32,11 +32,11 @@ $(document).ready(function() {
     });
   }
 
-  // This function constructs a todo-item row
+  // This function constructs a burger-item row
   function createNewRow(burger) {
     var $newInputRow = $(
       [
-        "<li class='list-group-item' index='addBurger'>",
+        "<li class='list-group-item' id='addBurger'>",
         "<span>",
         burger.burgerName,
         "</span>",
@@ -54,7 +54,7 @@ $(document).ready(function() {
     event.preventDefault();
     // Constructing a newBurger object to hand to the database
     var newBurger = {
-      burger_name: burgerName.val().trim(),
+      burger_name: $burgerName.val().trim(),
       devoured: false
     };
 
